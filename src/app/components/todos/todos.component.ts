@@ -8,7 +8,8 @@ import { Todo } from '../../models/Todo';
   styleUrls: ['./todos.component.css'],
 })
 export class TodosComponent implements OnInit {
-  todos: Todo[];
+  todos: Todo[] = [];
+  todo: Todo[] = [];
 
   constructor(private todoService: TodoService) {}
 
@@ -22,7 +23,7 @@ export class TodosComponent implements OnInit {
     // Remove From UI
     this.todo = this.todos.filter((t) => t.id !== todo.id);
     // Remove from server
-    this.todoService.delete Todo(todo).subscribe();
+    this.todoService.deleteTodo(todo).subscribe();
   }
 
   addTodo(todo:Todo){

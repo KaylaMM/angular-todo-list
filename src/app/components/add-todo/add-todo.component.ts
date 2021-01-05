@@ -8,11 +8,11 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class AddTodoComponent implements OnInit {
   @Output() addTodo: EventEmitter<any> = new EventEmitter();
 
-  title: string;
+  title:string | undefined;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   onSubmit() {
     const todo = {

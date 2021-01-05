@@ -8,12 +8,13 @@ import { Todo } from 'src/app/models/Todo';
   styleUrls: ['./todo-item.component.css'],
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo: Todo;
-  @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter;
+  @Input()
+  todo: Todo = new Todo; 
+  @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter();
 
-  constructor(private todoService:TodoService) {}
+  constructor(private todoService: TodoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(){}
 
   //Set Dynamic Classes
   setClasses() {
@@ -24,14 +25,16 @@ export class TodoItemComponent implements OnInit {
     return classes;
   }
 
-  onToggle(todo) {
+  onToggle(todo: Todo) {
     // Toggle in UI
     todo.completed = !todo.completed;
     // Toggle on server
-    this.todoService.toggleCompleted(todo).subscribe(todo => console.log(todo ))
+    this.todoService
+      .toggleCompleted(todo)
+      .subscribe((todo) => console.log(todo));
   }
 
-  onDelete(todo) { 
-    this.deleteTodo.emit(todo)
+  onDelete(todo: Todo | undefined) {
+    this.deleteTodo.emit(todo);
   }
-}  
+}
